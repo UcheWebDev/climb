@@ -234,4 +234,35 @@ body{
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.s-board {
+  background: #fff3;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px #0002;
+  border: 2px solid #1e293b;
+  position: relative;
+  margin: 0 auto;
+}
+
+.s-board-cell {
+  width: 36px;
+  height: 36px;
+  background: #1e40afcc;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  overflow: hidden;
+  /* Remove any table-related styles */
+}
+.s-board-cell.success {
+  background: #16a34a99;
+}
+.s-board-cell.alert {
+  background: #dc262699;
+}
   

@@ -184,21 +184,34 @@ const GameLayout: React.FC<GameLayoutProps> = ({ roomId }) => {
       )}
 
       {/* Game Info Card */}
-      <div className="flex items-center justify-between w-full max-w-md mb-4 px-4 py-3 rounded-2xl bg-white/10 border border-blue-900/30 shadow-md backdrop-blur-md">
-        <div className="text-center">
-          <p className="text-xs text-blue-200">Room ID</p>
-          <p className="text-lg font-bold text-green-300 tracking-widest">{currentRoomId}</p>
+      <div className="flex flex-col w-full max-w-md mb-4 px-4 py-3 rounded-2xl bg-white/10 border border-blue-900/30 shadow-md backdrop-blur-md">
+        <div className="flex items-center justify-between w-full">
+          <div className="text-center">
+            <p className="text-xs text-blue-200">Room ID</p>
+            <p className="text-lg font-bold text-green-300 tracking-widest">{currentRoomId}</p>
+          </div>
+          <div className="text-center">
+            <p className="text-xs text-blue-200">Online</p>
+            <p className="text-lg font-bold text-blue-300">{onlinePlayers.length}</p>
+          </div>
+          <button
+            onClick={handleLeaveGame}
+            className="bg-red-600 text-white px-3 py-1 rounded-lg text-xs font-semibold hover:bg-red-700 transition-colors"
+          >
+            Leave
+          </button>
         </div>
-        <div className="text-center">
-          <p className="text-xs text-blue-200">Players Online</p>
-          <p className="text-lg font-bold text-blue-300">{onlinePlayers.length}</p>
+        {/* Player Emoji Row */}
+        <div className="flex w-full justify-between items-center text-xs gap-2 mt-2">
+          <div className="flex items-center gap-1">
+            <span className="text-lg">🧑</span>
+            <span className={`truncate max-w-[80px] ${user?.email === gameState?.player1_id ? 'font-bold text-green-200' : 'text-blue-100'}`}>{gameState?.player1_name || 'Player 1'}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <span className="text-lg">🤖</span>
+            <span className={`truncate max-w-[80px] ${user?.email === gameState?.player2_id ? 'font-bold text-green-200' : 'text-blue-100'}`}>{gameState?.player2_name || 'Player 2'}</span>
+          </div>
         </div>
-        <button
-          onClick={handleLeaveGame}
-          className="bg-red-600 text-white px-3 py-1 rounded-lg text-xs font-semibold hover:bg-red-700 transition-colors"
-        >
-          Leave
-        </button>
       </div>
 
       {/* Top row of question marks */}
