@@ -205,11 +205,11 @@ const GameLayout: React.FC<GameLayoutProps> = ({ roomId }) => {
         <div className="flex w-full justify-between items-center text-xs gap-2 mt-2">
           <div className="flex items-center gap-1">
             <span className="text-lg">🧑</span>
-            <span className={`truncate max-w-[80px] ${user?.email === gameState?.player1_id ? 'font-bold text-green-200' : 'text-blue-100'}`}>{gameState?.player1_name || 'Player 1'}</span>
+            <span className={`truncate max-w-[80px] ${user?.email === gameState?.player1_id ? 'font-bold text-green-200' : 'text-blue-100'}`}>{(gameState?.player1_name?.split(' ')[0]) || 'Player 1'}</span>
           </div>
           <div className="flex items-center gap-1">
             <span className="text-lg">🤖</span>
-            <span className={`truncate max-w-[80px] ${user?.email === gameState?.player2_id ? 'font-bold text-green-200' : 'text-blue-100'}`}>{gameState?.player2_name || 'Player 2'}</span>
+            <span className={`truncate max-w-[80px] ${user?.email === gameState?.player2_id ? 'font-bold text-green-200' : 'text-blue-100'}`}>{(gameState?.player2_name?.split(' ')[0]) || 'Player 2'}</span>
           </div>
         </div>
       </div>
