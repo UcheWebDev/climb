@@ -6,6 +6,7 @@ import { Switch, Route } from 'wouter';
 import { AuthProviderWithGoogle } from './context/AuthContext';
 import HowToPlay from './components/HowToPlay';
 import TermsOfUse from './components/TermsOfUse';
+import Profile from './components/Profile';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Switch>
             <Route path="/how-to-play" component={HowToPlay} />
             <Route path="/terms" component={TermsOfUse} />
+            <Route path="/profile" component={Profile} />
             <Route path="/">
               <div className="flex flex-col md:flex-row gap-8 w-full max-w-xl rounded-full  shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex-1">

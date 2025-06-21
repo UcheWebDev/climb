@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { LogIn, Wallet, LogOut } from 'lucide-react';
 import { HelpCircle } from 'lucide-react';
+import { FaUser, FaQuestionCircle, FaFileAlt, FaHistory, FaSignOutAlt } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'wouter';
 
 const Header: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const { user, isAuthenticated, isLoading, handleGoogleLogin, logout } = useAuth();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const profileBtnRef = useRef<HTMLButtonElement>(null);
@@ -81,31 +81,41 @@ const Header: React.FC = () => {
                   </div>
                
                   <div className="px-4 py-2 text-sm text-gray-300">
-                    <div className="font-medium">{user?.name}</div>
-                    <div className="text-gray-400">{user?.email}</div>
+                    <div className="font-medium truncate">{user?.name}</div>
+                    <div className="text-gray-400 truncate text-xs">{user?.email}</div>
                   </div>
-                  <button
-                    onClick={() => {
-                      setIsProfileOpen(true);
-                      setIsDropdownOpen(false);
-                    }}
-                    className="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-[#2A2A3D]"
+                  <Link
+                    to="/profile"
+                    onClick={() => setIsDropdownOpen(false)}
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-[#2A2A3D] flex items-center gap-2"
                   >
+                    <FaUser className="w-4 h-4" />
                     View Profile
-                  </button>
+                  </Link>
+                 
+                     {/* Mobile nav items - only visible on mobile */}
+                     <div className="flex flex-col md:hidden border-b border-blue-900/30 mb-1 pb-1">
+                    <Link to="/how-to-play" className="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-[#2A2A3D] flex items-center gap-2">
+                      <FaQuestionCircle className="w-4 h-4" />
+                      How to Play
+                    </Link>
+                    <Link to="/terms" className="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-[#2A2A3D] flex items-center gap-2">
+                      <FaFileAlt className="w-4 h-4" />
+                      Terms
+                    </Link>
+                    <Link to="/recent-games" className="block w-full text-left px-4 py-2 text-sm text-blue-300 hover:bg-[#2A2A3D] flex items-center gap-2">
+                      <FaHistory className="w-4 h-4" />
+                      Recent Games
+                    </Link>
+                  </div>
                   <button
                     onClick={logout}
                     disabled={isLoading}
-                    className="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-[#2A2A3D] disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-[#2A2A3D] disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                   >
+                    <FaSignOutAlt className="w-4 h-4" />
                     {isLoading ? 'Signing out...' : 'Sign out'}
                   </button>
-                     {/* Mobile nav items - only visible on mobile */}
-                     <div className="flex flex-col md:hidden border-b border-blue-900/30 mb-1 pb-1">
-                    <Link to="/how-to-play" className="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-[#2A2A3D]">How to Play</Link>
-                    <Link to="/terms" className="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-[#2A2A3D]">Terms</Link>
-                    <Link to="/recent-games" className="block w-full text-left px-4 py-2 text-sm text-blue-300 hover:bg-[#2A2A3D]">Recent Games</Link>
-                  </div>
                 </div>
               )}
             </>
